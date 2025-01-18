@@ -5,6 +5,6 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
-    include: ['firebase/app', 'firebase/firestore']
+    include: ['firebase/app', 'firebase/firestore','primereact/inputnumber', 'primereact/button', 'primereact/floatlabel', 'primereact/inputtext']
   }
 })

@@ -5,15 +5,22 @@ export class LocalStorageService {
     }
     
     addLoggedUser(user){
-
         localStorage.setItem('userLogged', JSON.stringify(user));
     }
     
     checkLoggedUser(){
         const user = localStorage.getItem('userLogged');
-        if (user) {
-            return true
+        return user ? true : false;
+    }
+    
+    getLoggedUser(){
+        return JSON.parse(localStorage.getItem('userLogged'));
+    }
+    
+    updateLoggedUser(user){
+        if (this.getLoggedUser().id === user.id){
+            localStorage.setItem('userLogged', JSON.stringify(user));
         }
-        return false;
+        
     }
 }
