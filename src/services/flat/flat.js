@@ -19,9 +19,27 @@ export class FlatService {
         }
     }
     
-    async getFlats() {
+    async getFlats(filters) {
+
         const flatCollectionRef = collection(db, "flats");
-        const setQuery = query(flatCollectionRef);
+        const conditions = [];
+        
+        
+        if (filters.city) {
+            
+            const startText = filters.city;
+            const endText = filters.city + '\uf8ff';
+            conditions.push(where("city", ">=", startText));
+            conditions.push(where("city", "<=", endText));
+        }
+        if (filters.minPrice !== null) {
+            conditions.push(where("price", ">=", filters.minPrice));
+        }
+        if (filters.maxPrice !== null) {
+            conditions.push(where("price", "<=", filters.maxPrice));
+        }
+        
+        const setQuery = query(flatCollectionRef, ...conditions);
         const resultQuery = await getDocs(setQuery);
      
         if (!resultQuery.empty) {

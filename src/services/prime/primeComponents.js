@@ -6,4 +6,5 @@ export { InputNumber } from 'primereact/inputnumber';
 export { Calendar } from 'primereact/calendar';
 export { DataTable } from 'primereact/datatable';
 export { Column } from 'primereact/column';
-
+export { IconField } from 'primereact/iconfield';
+export { InputIcon } from 'primereact/InputIcon';
