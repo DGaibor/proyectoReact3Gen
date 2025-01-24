@@ -8,6 +8,7 @@ import {Register} from "./pages/register/Register.jsx";
 import {UpdateProfile} from "./pages/profile/update/UpdateProfile.jsx";
 import {FlatCreate} from "./pages/flat/create/FlatCreate.jsx";
 import {FlatView} from "./pages/flat/view/FlatView.jsx";
+import {Users} from "./pages/user/all/UsersAll.jsx";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path={'/profile/update'} element={<UpdateProfile/>} />
           <Route path={'/flat/create'} element={<FlatCreate/>} />
           <Route path={'/flat/:id'} element={<FlatView/>} />
+          <Route path={'/user/all'} element={<Users/>} />
       </Routes>
   )
 }

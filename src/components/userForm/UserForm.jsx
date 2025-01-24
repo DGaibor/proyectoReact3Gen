@@ -51,6 +51,7 @@ export const UserForm = (props) => {
            lastName: lastName.current?.value,
            email: email.current?.value,
            password: password.current?.value,
+           role: 'user'
        }
        if (typeForm === 'create') {
            const result =  await userService.createUser(user);

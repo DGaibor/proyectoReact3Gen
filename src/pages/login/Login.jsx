@@ -17,10 +17,14 @@ export const Login = () => {
 
         const userService = new UserService();
         const result = await userService.login(email.current.value, password.current.value);
-        const localStorageService = new LocalStorageService();
-        localStorageService.addLoggedUser(result.data);
         alert(result.message);
-        navigation('/')
+        if (result.data) {
+            const localStorageService = new LocalStorageService();
+            localStorageService.addLoggedUser(result.data);
+            navigation('/')
+        }
+       
+        
     }
     return <>
 

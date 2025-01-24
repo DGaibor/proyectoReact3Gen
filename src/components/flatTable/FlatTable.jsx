@@ -30,13 +30,13 @@ export const FlatTable= () =>{
             <>
                 <InputNumber
                     value={filters.minPrice}
-                    onChange={(e) => setFilters((prev)=> ({...filters,minPrice:e.value})) }
+                    onChange={(e) => setFilters({...filters , minPrice : e.value}) }
                     className="w-full"
                     placeholder="Min Price"
                 />
                 <InputNumber
                     value={filters.maxPrice}
-                    onChange={(e) => setFilters((prev)=> ({...filters,maxPrice:e.value})) }
+                    onChange={(e) => setFilters({...filters,maxPrice:e.value}) }
                     className="w-full"
                     placeholder="Max Price"
                 />

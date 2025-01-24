@@ -55,4 +55,18 @@ export class UserService {
         await updateDoc(userRef, user)
         return {data: {...user,id, password: ''}, message: 'User updated successfully.'};
     }
+    
+     async getUsers() {
+
+         const userCollectionRef = collection(db, "users");
+         const conditions = [];
+         const setQuery = query(userCollectionRef, ...conditions);
+         const resultQuery = await getDocs(setQuery);
+
+         if (!resultQuery.empty) {
+             const users = resultQuery.docs.map(doc => ({...doc.data(), id: doc.id, password: ''}));
+             return {data: users, message: 'Users gets successfully.'};
+         }
+         return {data: [], message: 'No data'};
+     }
 }
