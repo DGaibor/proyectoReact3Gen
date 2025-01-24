@@ -56,10 +56,23 @@ export class UserService {
         return {data: {...user,id, password: ''}, message: 'User updated successfully.'};
     }
     
-     async getUsers() {
+     async getUsers(filters) {
+        console.log(filters);
 
          const userCollectionRef = collection(db, "users");
          const conditions = [];
+
+         if (filters.firstName) {
+
+             const startText = filters.firstName;
+             const endText = filters.firstName + '\uf8ff';
+             conditions.push(where("firstName", ">=", startText));
+             conditions.push(where("firstName", "<=", endText));
+         }
+         if (filters.role && filters.role.code) {
+             conditions.push(where("role", "==", filters.role.code));
+         }
+         
          const setQuery = query(userCollectionRef, ...conditions);
          const resultQuery = await getDocs(setQuery);
 

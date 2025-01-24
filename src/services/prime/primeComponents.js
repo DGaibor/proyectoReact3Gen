@@ -8,3 +8,4 @@ export { DataTable } from 'primereact/datatable';
 export { Column } from 'primereact/column';
 export { IconField } from 'primereact/iconfield';
 export { InputIcon } from 'primereact/InputIcon';
+export {Dropdown} from 'primereact/dropdown';
