@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {UserService} from "../../services/user/user.js";
 import {Button, Column, DataTable, InputText, Dropdown} from "../../services/prime/primeComponents.js";
+import {useNavigate} from "react-router-dom";
 
 export const UserTable = () =>{
     const [loading, setLoading] = useState(false);
@@ -17,6 +18,8 @@ export const UserTable = () =>{
         { name: 'User', code: 'user' }
     ];
     
+    const navigate = useNavigate();
+    
     const userService = new UserService();
     
     const getUsers = async () => {
@@ -31,7 +34,7 @@ export const UserTable = () =>{
 
     const actionBodyTemplate = (user) => {
         console.log(user)
-        return <Button type="button" icon="pi pi-pencil" rounded onClick={()=> {}}></Button>;
+        return <Button type="button" icon="pi pi-pencil" rounded onClick={()=> {navigate('/profile/update/'+user.id)}}></Button>;
     };
 
     const firstNameFilterTemplate = () => {

@@ -9,6 +9,7 @@ import {LocalStorageService} from "../../services/localStorage/localStorage.js";
 
 export const UserForm = (props) => {
     const id = props?.id;
+    const typeUpdate = props?.type;
     
     let typeForm='create'
     if(id){
@@ -60,6 +61,9 @@ export const UserForm = (props) => {
        }
        
        if (typeForm === 'update') {
+           if (typeUpdate === 'user') {
+               delete user.password //remove password because the admin user can't edit password
+           }
            const result =  await userService.updateUser(user, id);
            localStorageService.updateLoggedUser(result.data)
            alert(result.message);
@@ -83,10 +87,10 @@ export const UserForm = (props) => {
                     <InputText ref={email} type={'email'} id="email"  defaultValue={user.email} />
                     <label htmlFor="email">Email</label>
                 </FloatLabel>
-                <FloatLabel className={'field-label'}>
+                { typeUpdate ==='logged' &&  <FloatLabel className={'field-label'} >
                     <Password inputRef={password} toggleMask  defaultValue={user.password} />
                     <label htmlFor="password">Password</label>
-                </FloatLabel>
+                </FloatLabel>}
             </div>
             <Button type={'submit'} className={'field-label'} label={typeForm==='create'? 'Create User' : 'Edit User'} />
         </form>
